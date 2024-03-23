@@ -4,6 +4,7 @@ import com.pegbeer.accounts.constants.AccountsConstants;
 import com.pegbeer.accounts.dto.CustomerDto;
 import com.pegbeer.accounts.entity.Accounts;
 import com.pegbeer.accounts.entity.Customer;
+import com.pegbeer.accounts.exception.CustomerAlreadyExistsException;
 import com.pegbeer.accounts.mapper.CustomerMapper;
 import com.pegbeer.accounts.repository.AccountsRepository;
 import com.pegbeer.accounts.repository.CustomerRepository;
@@ -11,6 +12,7 @@ import com.pegbeer.accounts.service.IAccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service @AllArgsConstructor
@@ -19,9 +21,15 @@ public class AccountServiceImpl implements IAccountService {
     private CustomerRepository customerRepository;
 
     @Override
-    public void createAccount(CustomerDto customerDto) {
+    public long createAccount(CustomerDto customerDto) {
         Customer customer = CustomerMapper.toCustomer(customerDto);
+        Optional<Customer> optionalCustomer = customerRepository.findByMobileNumber(customerDto.getMobileNumber());
+        if(optionalCustomer.isPresent()){
+            throw new CustomerAlreadyExistsException("A conflict has occurred processing the request");
+        }
         Customer savedCustomer = customerRepository.save(customer);
+        Accounts accountCreated = accountsRepository.save(createNewAccount(savedCustomer));
+        return accountCreated.getAccountNumber();
     }
 
     private Accounts createNewAccount(Customer customer){
