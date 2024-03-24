@@ -17,4 +17,11 @@ public class GlobalExceptionHandler {
                 .header("message",exception.getMessage())
                 .body(null);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Void> handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest webRequest){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .header("message",exception.getMessage())
+                .body(null);
+    }
 }

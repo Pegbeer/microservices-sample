@@ -6,6 +6,8 @@ import com.pegbeer.accounts.dto.CustomerDto;
 import com.pegbeer.accounts.entity.Accounts;
 import com.pegbeer.accounts.entity.Customer;
 import com.pegbeer.accounts.exception.CustomerAlreadyExistsException;
+import com.pegbeer.accounts.exception.ResourceNotFoundException;
+import com.pegbeer.accounts.mapper.AccountsMapper;
 import com.pegbeer.accounts.mapper.CustomerMapper;
 import com.pegbeer.accounts.repository.AccountsRepository;
 import com.pegbeer.accounts.repository.CustomerRepository;
@@ -25,12 +27,12 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public long createAccount(CustomerDto customerDto) {
         Customer customer = CustomerMapper.toCustomer(customerDto);
-        Optional<Customer> optionalCustomer = customerRepository.findByMobileNumber(customerDto.mobileNumber());
+        Optional<Customer> optionalCustomer = customerRepository.findByMobileNumber(customerDto.getMobileNumber());
         if(optionalCustomer.isPresent()){
             throw new CustomerAlreadyExistsException();
         }
         customer.setCreatedAt(LocalDateTime.now());
-        customer.setCreatedBy(customerDto.name());
+        customer.setCreatedBy(customerDto.getName());
         Customer savedCustomer = customerRepository.save(customer);
         accountsRepository.save(createNewAccount(savedCustomer));
         return savedCustomer.getCustomerId();
@@ -47,5 +49,16 @@ public class AccountServiceImpl implements IAccountService {
         newAccount.setCreatedAt(LocalDateTime.now());
         newAccount.setCreatedBy(customer.getName());
         return newAccount;
+    }
+
+    @Override
+    public CustomerDto getAccount(String mobileNumber) {
+        Customer customer = customerRepository
+                .findByMobileNumber(mobileNumber)
+                .orElseThrow(ResourceNotFoundException::new);
+        Accounts account = accountsRepository
+                .findByCustomerId(customer.getCustomerId())
+                .orElseThrow(ResourceNotFoundException::new);
+        return CustomerMapper.toCustomerDto(customer, AccountsMapper.toAccountsDto(account));
     }
 }

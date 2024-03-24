@@ -35,4 +35,10 @@ public class AccountsController {
                 .toUri();
         return ResponseEntity.created(locationOfNewAccount).build();
     }
+
+    @GetMapping("/{mobileNumber}")
+    public ResponseEntity<CustomerDto> get(@PathVariable String mobileNumber){
+        CustomerDto customer = accountService.getAccount(mobileNumber);
+        return ResponseEntity.ok(customer);
+    }
 }
