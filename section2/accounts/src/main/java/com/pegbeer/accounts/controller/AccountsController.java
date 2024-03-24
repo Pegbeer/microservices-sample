@@ -4,8 +4,10 @@ package com.pegbeer.accounts.controller;
 import com.pegbeer.accounts.dto.CustomerDto;
 import com.pegbeer.accounts.dto.ResponseDto;
 import com.pegbeer.accounts.service.IAccountService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -14,6 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(path = "/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
+@Validated
 public class AccountsController {
 
     private IAccountService accountService;
@@ -28,7 +31,7 @@ public class AccountsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody CustomerDto customerDto, UriComponentsBuilder ucb){
+    public ResponseEntity<Void> create(@Valid @RequestBody CustomerDto customerDto, UriComponentsBuilder ucb){
         long newAccountNumber = accountService.createAccount(customerDto);
         URI locationOfNewAccount = ucb.path("accounts/{id}")
                 .buildAndExpand(newAccountNumber)
