@@ -6,18 +6,17 @@ import com.pegbeer.accounts.entity.Customer;
 public class CustomerMapper {
 
     public static CustomerDto toCustomerDto(Customer customer){
-        CustomerDto customerDto = new CustomerDto();
-        customerDto.setName(customer.getName());
-        customerDto.setEmail(customer.getEmail());
-        customerDto.setMobileNumber(customer.getMobileNumber());
-        return customerDto;
+        return new CustomerDto(
+                customer.getName(),
+                customer.getEmail(),
+                customer.getMobileNumber());
     }
 
     public static Customer toCustomer(CustomerDto customerDto){
         Customer customer = new Customer();
-        customer.setName(customerDto.getName());
-        customer.setEmail(customerDto.getEmail());
-        customer.setMobileNumber(customerDto.getMobileNumber());
+        customer.setName(customerDto.name());
+        customer.setEmail(customerDto.email());
+        customer.setMobileNumber(customerDto.mobileNumber());
         return customer;
     }
 

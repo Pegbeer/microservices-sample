@@ -27,7 +27,7 @@ public class AccountsController {
         return ResponseEntity.ok("Hello world");
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Void> create(@RequestBody CustomerDto customerDto, UriComponentsBuilder ucb){
         long newAccountNumber = accountService.createAccount(customerDto);
         URI locationOfNewAccount = ucb.path("accounts/{id}")
