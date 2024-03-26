@@ -22,13 +22,6 @@ class AccountsApplicationTests {
 	@Autowired
 	TestRestTemplate restTemplate;
 
-	@Test
-	void shouldReturnGreetings(){
-		ResponseEntity<String> response = restTemplate.getForEntity("/accounts",String.class);
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(response.getBody()).isEqualTo("Hello world");
-	}
-
 
 	@Test
 	@DirtiesContext

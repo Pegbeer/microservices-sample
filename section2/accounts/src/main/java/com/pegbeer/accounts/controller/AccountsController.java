@@ -3,8 +3,12 @@ package com.pegbeer.accounts.controller;
 
 import com.pegbeer.accounts.dto.CustomerDto;
 import com.pegbeer.accounts.dto.ResponseDto;
+import com.pegbeer.accounts.exception.InvalidPathVariableException;
 import com.pegbeer.accounts.service.IAccountService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.RegExUtils;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,19 +20,14 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(path = "/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
+@AllArgsConstructor
 @Validated
 public class AccountsController {
 
     private IAccountService accountService;
 
-    public AccountsController(IAccountService accountService) {
-        this.accountService = accountService;
-    }
+    private final String mobileNumberPattern = "(^$|[0-9]{8})";
 
-    @GetMapping
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hello world");
-    }
 
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody CustomerDto customerDto, UriComponentsBuilder ucb){

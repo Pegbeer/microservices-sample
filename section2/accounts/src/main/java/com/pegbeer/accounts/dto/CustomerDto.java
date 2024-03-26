@@ -18,7 +18,7 @@ public class CustomerDto {
     private String email;
 
     @NotEmpty(message = "Mobile number cannot be empty")
-    @Pattern(regexp = "(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
+    @Pattern(regexp = "(^$|[0-9]{8})",message = "Mobile number must be 8 digits")
     private String mobileNumber;
     private AccountsDto account;
 }
