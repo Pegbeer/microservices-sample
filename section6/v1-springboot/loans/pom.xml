@@ -83,7 +83,7 @@
 				<version>3.4.1</version>
 				<configuration>
 					<to>
-						<image>pegbeer/${project.artifactId}:v1</image>
+						<image>pegbeer/${project.artifactId}:s6</image>
 					</to>
 				</configuration>
 			</plugin>

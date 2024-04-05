@@ -9,11 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pegbeer</groupId>
-	<artifactId>loans</artifactId>
+	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-	<name>loans</name>
-	<description>Microservice for Loans</description>
+	<name>accounts</name>
+	<description>Account&apos;s microservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -36,6 +35,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -50,11 +55,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -83,7 +83,7 @@
 				<version>3.4.1</version>
 				<configuration>
 					<to>
-						<image>pegbeer/${project.artifactId}:v1</image>
+						<image>pegbeer/${project.artifactId}:s6</image>
 					</to>
 				</configuration>
 			</plugin>
