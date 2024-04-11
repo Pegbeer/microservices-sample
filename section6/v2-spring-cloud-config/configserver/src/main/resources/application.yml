@@ -1,0 +1,97 @@
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: "git@github.com:Pegbeer/microservices-sample-config.git"
+          default-label: main
+          clone-on-start: true
+          force-pull: true
+          host-key: config_server_deploy_key
+          host-key-algorithm: ssh-rsa
+          private-key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIJJwIBAAKCAgEArkWpS8ZRWTZTjMFdTG6kyklO3XA606b8sb8uzCboDgaaP/LM
+            5bIL3Mqe3ne/4+2Dj69DZ7Qj/1Dth53qZZ6Q9rjbO2IRGc/7o5W+abKb5P5/TFMR
+            WqiZNoFygpyXoE4FyGWYS8BQNTZlJnrjrQhEL7EnatgCQT6Joi/MerQ1mnVsaM9N
+            GpVnelLaLTqT7eAAI11heIBhTK96beBs8hkgvw93Dru/GaY4Uppd96BM0JGdDhZj
+            uL4bRzDO1ds5JAyCWM/cw8XK88IonZftFMhnxy0xpv8kfLpscVAFg5p6lQ44PPjl
+            G598RoTiZXXo5KSsKavIrjasPDv4fgft8X21iNVce/NuOTEv6GrEnE+1g4Ydw1Ar
+            JXulZpzE6wML6gmVbOpyr9KU/zk3gjU4hRuAL1GlSRdP//pV/PY14rSWIhjlQOik
+            BH1N5md4Uy8TKQY/dtLk7Nr3BeRWeoH698d7f9XLvJI6jY7Tgyc6dKZ3b6Hntsfq
+            QucerNOHKG/vzJ9L8Hdik6BTd3TvSGcBypin/QZNIoCdcBIU/UylPVxKp7tZ6EBe
+            b+D7PvKNeQA/FG9InWbjXthIAqkpaWxgktqLH7JnaYDTLfB15J0LN3i+uWf3e41X
+            J+RoO8W/gYgPFrR8mQpm65WJlvk5RwaSGjPbEm9tiowEqHxXXwJD5o5VwVMCAwEA
+            AQKCAgB3NDclGbYzK7HiqbFDwrr9kz9awJW8iJB4lKlSA5rfXSzNaSs2Qp9Sm1Yo
+            HgknwyMmeV/F47ZrwdN33FCkyd2mpbNv3xiLa3RY5OimLAHulRZGAtvwAzspyUmm
+            ha5BfJ0AAl42EonKnDZ8J7rsdKcPaEHqF28Tac+DHOblV7cCvCc3WfUHpgJt7ZZH
+            MbZWE86EYi912Xq0laNM3SIoR3/asJ1jepCw3r3P4r87zm48jB29sRrtFzxZac1R
+            Au8G9XeDgEslrnmwWrKleXI1sQ8rcoJwFD3FA0+CApaC+nu20U8uhaFRT7oWEnc5
+            p3lyTCFnL5XJdKRDX1IOAyaC9NXibKmAbgc1dUOuY2C5XZjQnN+v/RdqN+pqSm3h
+            uuuArwoMoWdPZGDeBRdBJ6B7Sur+naweBJnNy/tW3Y4QtqOyRj+vmo1sAT/mCjiM
+            h3wIdvpmICiffOsgxaIrHljDWxJ4Mh+lsFwQr912Bquobu+24y+86U9Y6Q592gtN
+            N0Rl19mvEthnV2kQE46A3cPVGj8vvo/0fJDoSz+FVtNaj2p4vqG5VErd53cbzsPV
+            x0L93eFI4zpzC3Bu2NdcykcbtJ1Tf+t8/GRwfybRK4UT73vvPB0N9IzAyvJq2BQA
+            QeHCDqZhLzi2JnZqL60jTJlIurkRWg1iMkTXMQyF2T/c6q1MQQKCAQEA6FqOgwVo
+            ouJ/AcjRWJpvFmEe6GI3nzMsiyQjdlX9eI+4BOJhGcM0kmbAKDc+kjCkFyWwOi47
+            y1p1lVRGLei/YmVwQY0AO27FN5hmRlXXDWP4dP7m5eNrerSxXk8kwGWncZOhH6Nd
+            h3ZxZQg3hxMT266PbjIAPe00JNcLwQGr9CJ9F8jhMfB/GAC8vm+wAPt5w5DT8TJe
+            dQjGf1Owzd8xz8vTA1oYngldleyXYY6fAKnSyp6Ozjz+sPh0ICzQQE7RoNfpn9so
+            /C9ajn5rDC9bcFUbOm8ONAkIYQUGmeh0NyIjiH8s/vPjukdOQkQIdDRJRdgbBLAa
+            AErLIdVLiuCWCwKCAQEAwAHr18Cr2Dz9XmO5P7Ad7fEnLSaQ5PxeLblJ+lOWeuUQ
+            6TIwuyXipfaG/EwpHkGITQIlV+P2c1JoJarSP5xcyRUJczsSJ0KdR7sQbfqP7Xcd
+            oq9/1osnMFkeRZIX8g85m3oZ8KCjeh0k7Ek5SwVj6aM2a7fti8xCywGqUTgzYCA0
+            mSUAzl65bWjd3lDk2qucSVbAv61gcXzHxbU6Nv6Fpw7ZMh6qiIS36gcfde7nmITZ
+            V1UzavIJAq+0NX84v1OUyHJBZ3t5l5sf5Id011+/O2JzOoSQ+eJ9x0d25jCpwFlX
+            NWqgU332deLbCc/98Z8WWn9eNznSdELnfopkllj22QKCAQA5nbL3BFFVCqsJyz02
+            Jl1jhEPAxhIa1Pq3qgdtIZeP3Lt54pTHaaNQplAB6OkIIS2fW8YeNza2j0DW/aXF
+            XpCOmq7CYm9rTWV0CsNZr5F7DY4fnNGusb0GGWZeB2wKlWp2/G+Yw86+d31Y2zfB
+            s9ZZxChm39k1getLM1QD0SFNkXvJeRN2abdqQUyMQG+5XqJr/y6/AYlwpfNqwVr3
+            QeA9McKqcx3lmlbthVRoaZA9/t55ReYNeAyD36gUDmi5eZH7u26AKD06g5eF/A0Z
+            YWjgKwpsa/tupcrBHBjt8zlWLo33G+oRcnLGz0W1ot8hyZFd01+nwu8/oUxLoHNy
+            BYzPAoIBAEp5dEz/QqhhH7WY4KW/XhyIyTVOHC11ZeI+WF9sRJXue5y4BwbQLxVI
+            hhseP2So7oFQL8PjfBhHAnZ5x4s8zxB/xGaZpvTrda349OpzoZft9+S+RcultdGe
+            /4rkm70cArA3sBARftdCrqunyz06HgLld5pYgR8UX2P2hWVzcxn54+zy2VkyjKHP
+            Zx9wKRRYNAqOR70RNrNOPv6EyMvD9XtS2xQBqQvCzsNLd/x6agJSpSqmtYbp0mzk
+            UfXeHti3RqJpDs1gq00OslQl5kATt00FZsRv3vvNyhOduJSYk380KAtkDEPWO96F
+            24f20P0DQ9xeQuEQ4HyP5tLCQzm90CECggEAfpmHQdns2DSSMeec1kISPXpndy8y
+            kgkakhjsqFkaaN2t2Z0zHSoC00qMk23Rfsp5U3O0mjiUzBcQ7hc9oX248BG8jUwC
+            vKUdAYGPwGW4CDbJ67AgJ75U8kVtGqwo47j1QY9BK7uOchjwS5gc26fTXazObT8B
+            XWDWtknOcAA78v2HrGhuCg8pmV7ct1IdHK/2xSrVOswxIleobtIA7DW/GEOSyqlC
+            ERVPM1HNyl2iUiQd2WDa7ww59j6PZzMw7gBVQTaarXnC7BUXJeFRX9UNOItLr40A
+            EXn+Ht7kzZrxumzMGQyQlwT4If0zXXs5SKBRRcVR1k2F93/I4TKce8AFCA==
+            -----END RSA PRIVATE KEY-----
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+server:
+  port: 8071
+
+logging:
+  level:
+    web: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+encrypt:
+  key: "620f3ad3ec42517d283175c9cdb27a39ce35f3515d4d10ea64dff95a55581744"
